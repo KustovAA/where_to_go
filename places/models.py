@@ -5,6 +5,9 @@ class Image(models.Model):
     src = models.CharField(max_length=1000, verbose_name='Ссылка на картинку', null=True, blank=True)
     content = models.ImageField(verbose_name='Картинка', null=True)
 
+    def get_url(self):
+        return self.content if self.content else self.src
+
 
 class Place(models.Model):
     title = models.CharField(max_length=500, verbose_name='Название')
