@@ -20,5 +20,6 @@ from places import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index)
+    path('', views.index),
+    path('places/<int:id>', views.place, name='places')
 ]
