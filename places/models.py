@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Image(models.Model):
-    src = models.CharField(max_length=1000)
+    src = models.CharField(max_length=1000, verbose_name='Ссылка на картинку', null=True, blank=True)
+    content = models.ImageField(verbose_name='Картинка', null=True)
 
 
 class Place(models.Model):
