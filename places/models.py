@@ -23,8 +23,17 @@ class Image(models.Model):
         null=True
     )
 
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
     def get_url(self):
         try:
             return self.content.url
         except ValueError:
             return self.src
+
+    class Meta:
+        ordering = ['order']
