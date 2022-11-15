@@ -1,4 +1,4 @@
-asgiref==3.5.2
+asgiref==3.4.1
 Django==4.1
 django-admin-sortable2==2.1.4
 django-tinymce==3.5.0
