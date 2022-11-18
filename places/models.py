@@ -14,8 +14,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    src = models.CharField(max_length=1000, verbose_name='Ссылка на картинку', null=True, blank=True)
-    content = models.ImageField(verbose_name='Картинка', null=True, blank=True)
+    content = models.ImageField(verbose_name='Картинка')
     place = models.ForeignKey(
         Place,
         verbose_name='Место',
@@ -24,17 +23,10 @@ class Image(models.Model):
         null=True
     )
 
-    order = models.PositiveIntegerField(
-        default=0,
-        blank=False,
-        null=False,
-    )
+    order = models.PositiveIntegerField(default=0)
 
     def get_url(self):
-        try:
-            return self.content.url
-        except ValueError:
-            return self.src
+        return self.content.url
 
     class Meta:
         ordering = ['order']
