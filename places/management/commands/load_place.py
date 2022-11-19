@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 from django.core.files import File
 from tempfile import NamedTemporaryFile
 from urllib.request import urlopen
-import pathlib
 import requests
 
 from places.models import Place, Image
@@ -22,8 +21,7 @@ def save_place(place):
         img_temp = NamedTemporaryFile(delete=True)
         img_temp.write(urlopen(img_url).read())
         img_temp.flush()
-        file_extension = pathlib.Path(img_url).suffix
-        image_record.content.save(f"image_{image_record.pk}{file_extension}", File(img_temp))
+        image_record.content.save(img_url.split('/')[-1], File(img_temp))
 
 
 class Command(BaseCommand):
