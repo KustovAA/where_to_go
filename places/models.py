@@ -25,8 +25,5 @@ class Image(models.Model):
 
     order = models.PositiveIntegerField(default=0)
 
-    def get_url(self):
-        return self.content.url
-
     class Meta:
         ordering = ['order']
