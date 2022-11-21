@@ -18,6 +18,11 @@
 - `DEBUG` — дебаг-режим. Поставьте True, чтобы увидеть отладочную информацию в случае ошибки.
 - `SECRET_KEY` — секретный ключ проекта (обязательная переменная)
 - `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
+- `AWS_ACCESS_KEY_ID` - aws id пользователя
+- `AWS_SECRET_ACCESS_KEY` - aws серетный ключ пользователя
+- `AWS_STORAGE_BUCKET_NAME` - имя s3 бакета
+- `AWS_URL` - ссылка на s3 бакет
+
 
 ## Добавление нового места
 ```
