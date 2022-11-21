@@ -8,7 +8,7 @@ from places.models import Place, Image
 
 
 def save_place(place):
-    new_place, created = Place.objects.get_or_create(
+    place_record, created = Place.objects.get_or_create(
         title=place['title'],
         defaults={
             'description_short': place['description_short'],
@@ -19,7 +19,7 @@ def save_place(place):
     )
 
     for img_url in place['imgs']:
-        image_record = Image(place=new_place)
+        image_record = Image(place=place_record)
         img_temp = NamedTemporaryFile(delete=True)
         img_temp.write(urlopen(img_url).read())
         img_temp.flush()
