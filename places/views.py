@@ -6,10 +6,8 @@ from .models import Place
 
 
 def index(request):
-    places = Place.objects.all()
-
     features = []
-    for place in places:
+    for place in Place.objects.all():
         features.append({
             "type": "Feature",
             "geometry": {
@@ -31,7 +29,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def place(request, id):
+def get_place(request, id):
     place = get_object_or_404(Place, pk=id)
 
     return JsonResponse({
