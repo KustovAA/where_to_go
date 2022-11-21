@@ -10,10 +10,12 @@ from places.models import Place, Image
 def save_place(place):
     new_place, created = Place.objects.get_or_create(
         title=place['title'],
-        description_short=place['description_short'],
-        description_long=place['description_long'],
-        lat=place['coordinates']['lat'],
-        lng=place['coordinates']['lng']
+        defaults={
+            'description_short': place['description_short'],
+            'description_long': place['description_long'],
+            'lat': place['coordinates']['lat'],
+            'lng': place['coordinates']['lng'],
+        }
     )
 
     for img_url in place['imgs']:
