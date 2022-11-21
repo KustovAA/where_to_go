@@ -18,6 +18,9 @@ def save_place(place):
         }
     )
 
+    if not created:
+        return
+
     images = []
     for order, img_url in enumerate(place['imgs']):
         image_content = urlopen(img_url).read()
