@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
-from django.core.files import File
-from tempfile import NamedTemporaryFile
+from django.core.files.base import ContentFile
+from hashlib import md5
 from urllib.request import urlopen
 import requests
 
@@ -18,12 +18,13 @@ def save_place(place):
         }
     )
 
-    for img_url in place['imgs']:
-        image_record = Image(place=place_record)
-        img_temp = NamedTemporaryFile(delete=True)
-        img_temp.write(urlopen(img_url).read())
-        img_temp.flush()
-        image_record.content.save(img_url.split('/')[-1], File(img_temp))
+    images = []
+    for order, img_url in enumerate(place['imgs']):
+        image_content = urlopen(img_url).read()
+        content_file = ContentFile(image_content, name=md5(image_content).hexdigest())
+        images.append(Image(place=place_record, content=content_file, order=order))
+
+    Image.objects.bulk_create(images)
 
 
 class Command(BaseCommand):
