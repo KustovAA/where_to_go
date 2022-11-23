@@ -29,10 +29,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def get_place(request, id):
-    place = get_object_or_404(Place, pk=id)
-
-    return JsonResponse({
+def get_place(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+    serialized_place = {
         'title': place.title,
         'imgs': [img.content.url for img in place.images.all()],
         'description_short': place.description_short,
@@ -41,4 +40,6 @@ def get_place(request, id):
             'lng': place.lng,
             'lat': place.lat
         }
-    })
+    }
+
+    return JsonResponse(serialized_place, json_dumps_params={'indent': 2, 'ensure_ascii': False})
