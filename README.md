@@ -21,7 +21,7 @@
 - `AWS_ACCESS_KEY_ID` - aws id пользователя
 - `AWS_SECRET_ACCESS_KEY` - aws серетный ключ пользователя
 - `AWS_STORAGE_BUCKET_NAME` - имя s3 бакета
-- `AWS_URL` - ссылка на s3 бакет
+- `AWS_S3_ENDPOINT_URL` - ссылка на s3 бакет
 
 
 ## Добавление нового места

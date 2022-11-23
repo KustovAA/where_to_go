@@ -35,8 +35,7 @@ DEBUG = env.bool('DEBUG', True)
 AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
-AWS_URL = env.str('AWS_URL')
-AWS_S3_ENDPOINT_URL = AWS_URL
+AWS_S3_ENDPOINT_URL = env.str('AWS_S3_ENDPOINT_URL')
 
 
 # Application definition
@@ -133,9 +132,9 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_URL = AWS_URL + '/static/'
+STATIC_URL = AWS_S3_ENDPOINT_URL + '/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = AWS_URL + '/media/'
+MEDIA_URL = AWS_S3_ENDPOINT_URL + '/media/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
