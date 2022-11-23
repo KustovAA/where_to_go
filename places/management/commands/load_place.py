@@ -22,7 +22,7 @@ def save_place(place):
         return
 
     images = []
-    for order, img_url in enumerate(place['imgs']):
+    for order, img_url in enumerate(place.get('imgs', [])):
         image_content = urlopen(img_url).read()
         content_file = ContentFile(image_content, name=md5(image_content).hexdigest())
         images.append(Image(place=place_record, content=content_file, order=order))
